@@ -1,0 +1,37 @@
+[
+  {
+    "threat_id": "THR-01",
+    "name": "Ransomware Data Extortion",
+    "target": "Database",
+    "annual_base_likelihood": 0.28,
+    "typical_impact": "High"
+  },
+  {
+    "threat_id": "THR-02",
+    "name": "Credential Stuffing & Account Takeover",
+    "target": "Web Portal",
+    "annual_base_likelihood": 0.42,
+    "typical_impact": "Medium"
+  },
+  {
+    "threat_id": "THR-03",
+    "name": "API Abuse & BOLA Exploit",
+    "target": "API Server",
+    "annual_base_likelihood": 0.35,
+    "typical_impact": "High"
+  },
+  {
+    "threat_id": "THR-04",
+    "name": "Insider Privilege Escalation",
+    "target": "IAM Server",
+    "annual_base_likelihood": 0.15,
+    "typical_impact": "Critical"
+  },
+  {
+    "threat_id": "THR-05",
+    "name": "Supply-Chain Dependency Poisoning",
+    "target": "Application",
+    "annual_base_likelihood": 0.22,
+    "typical_impact": "High"
+  }
+]
