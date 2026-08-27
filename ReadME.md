@@ -93,6 +93,8 @@ Security Controls Defined:    6
 │       ├── threats.json           # Threat intelligence feeds
 │       └── summary.json           # Enterprise valuation summary
 ├── generate_data.py               # Day 1 Synthetic Data Generator script
+├── risk_engine.py                 # Day 2 FAIR Risk Quantification Engine
+├── main.py                        # Day 3 FastAPI REST API Backend Server
 ├── requirements.txt               # Python dependencies
 ├── .gitignore                     # Git ignored files
 └── README.md                      # Project documentation
@@ -100,11 +102,53 @@ Security Controls Defined:    6
 
 ---
 
+## 🚀 Day 2 Deliverable: FAIR Risk Quantification Engine
+
+**Day 2** delivers the mathematical risk engine (`risk_engine.py`) implementing the **FAIR (Factor Analysis of Information Risk)** standard:
+
+* **Likelihood Calculation ($P$):** Combines CVSS vulnerability severity, internet exposure (+0.30), and active defenses (MFA -0.35, EDR -0.25).
+* **Financial Impact Modeling ($I$):** Direct asset valuation + hourly downtime losses + forensic recovery costs in **Rupees (₹)**.
+* **Expected Annual Loss ($\text{EAL} = P \times I$):** Computed per computer asset and aggregated across the enterprise.
+* **Enterprise Risk Benchmark:**
+  * **Enterprise Risk Score:** `41 / 100`
+  * **Total Expected Annual Loss:** `₹12.05 Crores`
+  * **Top Risk Asset:** `Identity & IAM Controller` (EAL: ₹2.74 Crores / year)
+* **What-If Scenario Simulation:** Deploying Hardware Token MFA saves **₹6.74 Crores** in expected losses with **3,272% ROSI**.
+
+Run the Risk Engine:
+```bash
+python risk_engine.py
+```
+
+---
+
+## ⚡ Day 3 Deliverable: FastAPI Web Backend Server
+
+**Day 3** delivers the high-speed REST API server (`main.py`) powered by **FastAPI** and **Uvicorn**:
+
+* **CORS Enabled:** Seamless integration with any browser or frontend client.
+* **Core API Endpoints:**
+  * `GET /` — Service health check & metadata
+  * `GET /api/dashboard` — Enterprise Risk Score (41/100), Total EAL (₹12.05 Cr), Potential Exposure
+  * `GET /api/assets` — Evaluated inventory of all 150 assets with likelihood %, CVSS, and loss in ₹
+  * `GET /api/risks/top` — Top 5 highest financial risk contributor assets
+  * `POST /api/scenario` — What-If simulation engine (MFA, EDR, combined remediation)
+* **Interactive Documentation:**
+  * **Swagger UI:** `http://127.0.0.1:8000/docs`
+  * **ReDoc:** `http://127.0.0.1:8000/redoc`
+
+Run the Backend Server:
+```bash
+uvicorn main:app --reload --port 8000
+```
+
+---
+
 ## 📅 Roadmap
 
 - [x] **Day 1:** Synthetic Enterprise Data Generator & Schema Setup
-- [ ] **Day 2:** FAIR Mathematical Risk Quantification Engine
-- [ ] **Day 3:** FastAPI REST API Backend
+- [x] **Day 2:** FAIR Mathematical Risk Quantification Engine
+- [x] **Day 3:** FastAPI REST API Backend
 - [ ] **Day 4:** Knapsack Budget Optimizer & Scenario Simulator
 - [ ] **Day 5:** Frontend Interactive Dashboard & Chart.js Visualizations
 - [ ] **Day 6:** End-to-End Testing & Live Hackathon Demo Preparation
