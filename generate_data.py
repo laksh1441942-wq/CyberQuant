@@ -9,18 +9,17 @@ Purpose: Generates a realistic synthetic enterprise dataset for a medium-sized
 
 Outputs (saved in data/generated/):
   1. assets.json          - 150 servers, databases, cloud APIs, laptops
-  2. vulnerabilities.json - 120+ CVE vulnerabilities mapped to assets
-  3. controls.json        - 8 enterprise security controls with costs & efficacy
+    2. vulnerabilities.json - 69 CVE vulnerabilities mapped to assets
+    3. controls.json        - 6 enterprise security controls with costs & efficacy
   4. threats.json         - Active threat intelligence feeds
   5. summary.json         - High-level overview of the generated company
 ================================================================================
 """
 
-import os
 import sys
 import json
 import random
-from datetime import datetime
+from pathlib import Path
 
 # Configure UTF-8 stdout if supported
 if hasattr(sys.stdout, 'reconfigure'):
@@ -29,10 +28,10 @@ if hasattr(sys.stdout, 'reconfigure'):
 # Set random seed so numbers are consistent
 random.seed(42)
 
-# Determine workspace directory
-WORKSPACE_DIR = r"c:\Users\win 10\OneDrive\Desktop\SIH PROJECT"
-OUTPUT_DIR = os.path.join(WORKSPACE_DIR, "data", "generated")
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+# Write relative to this script so the generator works from any checkout.
+PROJECT_DIR = Path(__file__).resolve().parent
+OUTPUT_DIR = PROJECT_DIR / "data" / "generated"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 print("[DAY 1] Starting CyberQuant Synthetic Data Generator...")
 
@@ -265,7 +264,6 @@ total_vulns = len(vulnerabilities)
 critical_vulns = len([v for v in vulnerabilities if v["severity"] == "Critical"])
 
 summary = {
-    "generated_at": datetime.now().isoformat(),
     "organization_profile": "Mid-Tier Fintech & Digital Lending Institution",
     "total_monitored_assets": len(assets),
     "total_asset_valuation_inr": total_asset_value,
@@ -288,16 +286,10 @@ files_to_write = {
 }
 
 for filename, data in files_to_write.items():
-    file_path = os.path.join(OUTPUT_DIR, filename)
+    file_path = OUTPUT_DIR / filename
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
     print(f"[SAVED] {file_path}")
-
-# Also copy the generator code to project folder as generate_data.py
-project_script_path = os.path.join(WORKSPACE_DIR, "generate_data.py")
-with open(__file__, "r", encoding="utf-8") as src, open(project_script_path, "w", encoding="utf-8") as dst:
-    dst.write(src.read())
-print(f"[SAVED] Project Script: {project_script_path}")
 
 print("\n" + "="*70)
 print(f"DAY 1 TASK COMPLETE!")
