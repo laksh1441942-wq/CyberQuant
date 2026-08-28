@@ -22,5 +22,7 @@ ENV/
 # Logs and temporary files
 *.log
 *.tmp
+*.db
+*.sqlite3
 .DS_Store
 Thumbs.db
