@@ -12,6 +12,7 @@ from backend.app.routes.scenario import router as scenario_router
 from backend.app.routes.optimize import router as optimize_router
 from backend.app.routes.ai import router as ai_router
 from backend.app.routes.compliance import router as compliance_router
+from backend.app.routes.vulnerabilities import router as vulnerabilities_router
 
 # Create Database tables on startup safely
 try:
@@ -42,6 +43,7 @@ app.add_middleware(
 # Register Routes
 app.include_router(dashboard_router)
 app.include_router(assets_router)
+app.include_router(vulnerabilities_router)
 app.include_router(risks_router)
 app.include_router(scenario_router)
 app.include_router(optimize_router)

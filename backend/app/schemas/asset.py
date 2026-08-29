@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional
+from backend.app.schemas.vulnerability import VulnerabilityResponse
 
 class AssetResponse(BaseModel):
     asset_id: str
@@ -16,6 +17,9 @@ class AssetResponse(BaseModel):
     likelihood_pct: float
     financial_impact_inr: float
     expected_annual_loss_inr: float
+
+class AssetDetailResponse(AssetResponse):
+    vulnerabilities: List[VulnerabilityResponse] = []
 
 class AssetListResponse(BaseModel):
     total_count: int
