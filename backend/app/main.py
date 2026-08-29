@@ -13,12 +13,13 @@ from backend.app.routes.optimize import router as optimize_router
 from backend.app.routes.ai import router as ai_router
 from backend.app.routes.compliance import router as compliance_router
 
-# Create Database tables on startup
-Base.metadata.create_all(bind=engine)
-
-# Auto-seed database from Rajat's data/generated/ if needed
-with SessionLocal() as db_session:
-    seed_database_from_json(db_session)
+# Safe Startup: Create Database tables and auto-seed if needed
+try:
+    Base.metadata.create_all(bind=engine)
+    with SessionLocal() as db_session:
+        seed_database_from_json(db_session)
+except Exception as e:
+    print(f"[MAIN STARTUP WARNING] Database auto-initialization skipped or deferred: {e}")
 
 # Initialize FastAPI App
 app = FastAPI(
