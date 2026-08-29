@@ -7,17 +7,17 @@ from backend.app.models.vulnerability import Vulnerability
 from backend.app.models.control import Control
 
 def seed_database_from_json(db: Session):
-    """Loads Rajat's synthetic data from data/generated/ into database tables."""
-    data_dir = os.path.join(PROJECT_ROOT, "data", "generated")
-    assets_file = os.path.join(data_dir, "assets.json")
-    vulns_file = os.path.join(data_dir, "vulnerabilities.json")
-    controls_file = os.path.join(data_dir, "controls.json")
+    """Loads Rajat's synthetic data from data/generated/ into database tables (cross-platform)."""
+    data_dir = PROJECT_ROOT / "data" / "generated"
+    assets_file = data_dir / "assets.json"
+    vulns_file = data_dir / "vulnerabilities.json"
+    controls_file = data_dir / "controls.json"
 
     # If assets already seeded, skip
     if db.query(Asset).first():
         return
 
-    if os.path.exists(assets_file):
+    if assets_file.exists():
         with open(assets_file, "r", encoding="utf-8") as f:
             assets_data = json.load(f)
             for a in assets_data:
@@ -36,7 +36,7 @@ def seed_database_from_json(db: Session):
         db.commit()
         print(f"[SEED] Seeded {len(assets_data)} assets into database.")
 
-    if os.path.exists(vulns_file):
+    if vulns_file.exists():
         with open(vulns_file, "r", encoding="utf-8") as f:
             vulns_data = json.load(f)
             for v in vulns_data:
@@ -53,7 +53,7 @@ def seed_database_from_json(db: Session):
         db.commit()
         print(f"[SEED] Seeded {len(vulns_data)} vulnerabilities into database.")
 
-    if os.path.exists(controls_file):
+    if controls_file.exists():
         with open(controls_file, "r", encoding="utf-8") as f:
             controls_data = json.load(f)
             for c in controls_data:

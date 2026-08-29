@@ -1,0 +1,25 @@
+# Auto-detect text files and normalize line endings to LF for Windows/macOS compatibility
+* text=auto eol=lf
+
+# Shell scripts on macOS/Linux must have LF
+*.sh text eol=lf
+
+# Batch scripts on Windows must have CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Python and web files
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+# Binary files
+*.pdf binary
+*.png binary
+*.jpg binary
+*.db binary
+*.sqlite binary
