@@ -21,12 +21,9 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 def get_db():
-    """FastAPI Dependency for database sessions with automatic rollback on error."""
+    """FastAPI Dependency for database sessions."""
     db = SessionLocal()
     try:
         yield db
-    except Exception:
-        db.rollback()
-        raise
     finally:
         db.close()

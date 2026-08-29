@@ -1,13 +1,11 @@
-from typing import Optional
 from pydantic import BaseModel, Field
 
 class ScenarioRequest(BaseModel):
     action: str = Field(
         ...,
-        description="Action name: 'enable_mfa', 'enable_edr', 'enable_both', or 'patch_critical'",
-        example="enable_mfa"
+        description="Action name: 'enable_mfa_all', 'enable_edr_all', or 'enable_both'",
+        examples=["enable_mfa_all"]
     )
-    coverage: Optional[float] = Field(100.0, description="Coverage percentage (0-100%)", example=100.0)
 
 class ScenarioResponse(BaseModel):
     scenario_action: str

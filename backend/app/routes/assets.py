@@ -32,7 +32,8 @@ def list_assets(
 def get_asset_by_id(asset_id: str, db: Session = Depends(get_db)):
     """Retrieves specific asset risk details."""
     results = evaluate_all_risks(db)
+    target_id = asset_id.strip().lower()
     for a in results["all_assets"]:
-        if a["asset_id"].lower() == asset_id.lower():
+        if a["asset_id"].strip().lower() == target_id:
             return AssetResponse(**a)
     raise HTTPException(status_code=404, detail=f"Asset '{asset_id}' not found.")

@@ -1,12 +1,12 @@
-def generate_ai_response(query: str, top_risk_asset: dict) -> dict:
+def generate_ai_response(query: str, top_risk_asset: dict = None) -> dict:
     """
     Grounded AI Analyst response.
     Combines structured risk engine data with plain-English executive explanations.
     """
-    asset_data = top_risk_asset or {}
-    name = asset_data.get("asset_name", "Core Banking Identity Server")
-    loss = asset_data.get("expected_annual_loss_inr", 27416000.0)
-    chance = asset_data.get("likelihood_pct", 73.6)
+    asset_data = top_risk_asset if isinstance(top_risk_asset, dict) else {}
+    name = asset_data.get("asset_name", "Core Identity & IAM Controller")
+    loss = float(asset_data.get("expected_annual_loss_inr", 27416000.0))
+    chance = float(asset_data.get("likelihood_pct", 73.6))
 
     summary = (
         f"Your highest current financial risk is the {name}, contributing approximately "

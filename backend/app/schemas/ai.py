@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 
 class AIQueryRequest(BaseModel):
-    query: str = Field(..., example="What is our highest financial cyber risk today?")
+    query: str = Field(..., examples=["What is our highest financial cyber risk today?"])
 
 class AIQueryResponse(BaseModel):
     query: str

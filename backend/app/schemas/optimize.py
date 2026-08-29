@@ -9,7 +9,7 @@ class RecommendedControl(BaseModel):
     framework_mappings: str
 
 class OptimizeRequest(BaseModel):
-    budget_inr: float = Field(..., ge=0, example=10000000.0, description="Available security budget in INR (must be non-negative)")
+    budget_inr: float = Field(..., gt=0, examples=[10000000.0], description="Available security budget in INR (must be > 0)")
 
 class OptimizeResponse(BaseModel):
     budget_inr: float
