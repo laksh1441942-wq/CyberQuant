@@ -68,3 +68,14 @@ def seed_database_from_json(db: Session):
                 ))
         db.commit()
         print(f"[SEED] Seeded {len(controls_data)} controls into database.")
+
+if __name__ == "__main__":
+    from backend.app.database import engine, Base, SessionLocal
+    print(f"[SEED SCRIPT] Initializing tables on {engine.url}...")
+    Base.metadata.create_all(bind=engine)
+    session = SessionLocal()
+    try:
+        seed_database_from_json(session)
+        print("[SEED SCRIPT] Database successfully initialized and seeded!")
+    finally:
+        session.close()
