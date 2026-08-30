@@ -24,5 +24,8 @@ ENV/
 *.tmp
 *.db
 *.sqlite3
+*.pptx
+*.ppt
+docs/
 .DS_Store
 Thumbs.db
