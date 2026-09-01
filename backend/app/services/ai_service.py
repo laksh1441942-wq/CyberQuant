@@ -7,7 +7,9 @@ def generate_ai_response(query: str, top_risk_asset: dict = None) -> dict:
     name = asset_data.get("asset_name", "Core Identity & IAM Controller")
     loss = float(asset_data.get("expected_annual_loss_inr", 27416000.0))
     chance = float(asset_data.get("likelihood_pct", 73.6))
-    q_lower = query.lower()
+    risk_probability = float(asset_data.get("risk_probability", chance / 100.0))
+    drivers = asset_data.get("top_drivers") or ["internet exposure", "critical CVEs", "missing MFA"]
+    q_lower = query.lower() if query else ""
 
     if "mfa" in q_lower or "token" in q_lower or "authentication" in q_lower:
         summary = (
@@ -48,8 +50,7 @@ def generate_ai_response(query: str, top_risk_asset: dict = None) -> dict:
         summary = (
             f"Your highest current financial risk is the {name}, contributing approximately "
             f"₹{loss / 100000:.2f} Lakhs to Expected Annual Cyber Loss. "
-            f"The breach likelihood is {chance}%, primarily driven by internet exposure, "
-            f"critical CVE vulnerabilities, and absence of hardware MFA."
+            f"The modeled breach likelihood is {chance}%, primarily driven by {', '.join(drivers[:3])}."
         )
         action = "Deploy Hardware Token MFA and behavioral EDR agent on internet-facing nodes."
         cost = 2000000.0
@@ -62,5 +63,7 @@ def generate_ai_response(query: str, top_risk_asset: dict = None) -> dict:
         "financial_loss_inr": loss,
         "recommended_action": action,
         "estimated_cost_inr": cost,
-        "expected_savings_inr": savings
+        "expected_savings_inr": savings,
+        "risk_probability": risk_probability,
+        "risk_drivers": drivers,
     }

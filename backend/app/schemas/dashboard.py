@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import List, Optional
 
 class TopRiskAsset(BaseModel):
     asset_id: str
@@ -7,6 +7,7 @@ class TopRiskAsset(BaseModel):
     criticality: str
     expected_annual_loss_inr: float
     likelihood_pct: float
+    top_drivers: List[str] = []
 
 class DashboardSummary(BaseModel):
     company_name: str = "Fintech Enterprise (Medium-Sized Bank & Financial Services)"
@@ -18,3 +19,4 @@ class DashboardSummary(BaseModel):
     top_risk_asset: Optional[TopRiskAsset] = None
     potential_risk_reduction_inr: float
     currency: str = "INR"
+    model_name: str = "CyberQuant ML Risk Model"

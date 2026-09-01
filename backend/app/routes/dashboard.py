@@ -21,7 +21,8 @@ def get_dashboard_summary(db: Session = Depends(get_db)):
         asset_name=top_item["asset_name"],
         criticality=top_item["criticality"],
         expected_annual_loss_inr=top_item["expected_annual_loss_inr"],
-        likelihood_pct=top_item["likelihood_pct"]
+        likelihood_pct=top_item["likelihood_pct"],
+        top_drivers=top_item.get("top_drivers", [])
     ) if top_item else None
 
     return DashboardSummary(
@@ -31,5 +32,6 @@ def get_dashboard_summary(db: Session = Depends(get_db)):
         total_monitored_assets=results["total_assets_evaluated"],
         top_risk_asset=top_risk_dto,
         potential_risk_reduction_inr=potential_savings,
-        currency="INR"
+        currency="INR",
+        model_name="CyberQuant ML Risk Model"
     )

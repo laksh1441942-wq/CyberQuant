@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import List, Optional
 
 class AIQueryRequest(BaseModel):
     query: Optional[str] = Field(None, examples=["What is our highest financial cyber risk today?"])
@@ -13,3 +13,5 @@ class AIQueryResponse(BaseModel):
     recommended_action: str
     estimated_cost_inr: float
     expected_savings_inr: float
+    risk_probability: float = 0.0
+    risk_drivers: List[str] = []
