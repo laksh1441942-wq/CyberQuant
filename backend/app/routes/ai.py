@@ -11,5 +11,6 @@ router = APIRouter(prefix="/api/ai", tags=["AI Analyst"])
 def query_ai_analyst(req: AIQueryRequest, db: Session = Depends(get_db)):
     """Ask CyberQuant plain-English questions about enterprise risk."""
     results = evaluate_all_risks(db)
-    top_item = results["top_5_risk_contributors"][0] if results["top_5_risk_contributors"] else {}
-    return generate_ai_response(req.query, top_item)
+    top_item = results["top_5_risk_contributors"][0] if results.get("top_5_risk_contributors") else {}
+    actual_query = req.query or req.prompt or "What is our highest financial cyber risk?"
+    return generate_ai_response(actual_query, top_item)

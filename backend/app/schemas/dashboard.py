@@ -10,6 +10,8 @@ class TopRiskAsset(BaseModel):
     top_drivers: List[str] = []
 
 class DashboardSummary(BaseModel):
+    company_name: str = "Fintech Enterprise (Medium-Sized Bank & Financial Services)"
+    industry_sector: str = "Banking & Financial Services (RBI / SEBI Regulated)"
     enterprise_risk_score: int
     expected_annual_loss_inr: float
     total_potential_exposure_inr: float

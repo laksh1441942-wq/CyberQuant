@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberQuant SIH 2026 — AI Risk Analytics Platform</title>
+    <meta name="description" content="CyberQuant SIH 2026 platform featuring 3D animated data telemetry, 3D resource allocation, global latency node globe, AI convergence curves, and threat defense radar.">
+    
+    <!-- Google Fonts: Inter & Share Tech Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Share+Tech+Mono&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js & Three.js 3D Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Custom Vercel/Shadcn-Inspired CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="brand-logo">
+                <div class="logo-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="logo-titles">
+                    <span class="brand-title">CYBERQUANT 3D</span>
+                    <span class="brand-version">SIH 2026 FINALS</span>
+                </div>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#hero" class="nav-link active">Risk Overview</a>
+                <a href="#scenario-simulator" class="nav-link">What-If Simulator</a>
+                <a href="#investment-optimizer" class="nav-link">ROSI Optimizer</a>
+                <a href="#data-hub" class="nav-link">Telemetry Hub</a>
+                <a href="#ai-analyst" class="nav-link">AI Analyst</a>
+                <a href="#terminal" class="nav-link">CLI Shell</a>
+            </nav>
+
+            <div class="nav-actions">
+                <div class="search-input-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" placeholder="Search SIH backend..." id="global-search-input">
+                </div>
+
+                <button class="icon-btn" title="Simulate Traffic Spike" id="btn-simulate-traffic">
+                    <i class="fa-solid fa-bolt text-amber"></i>
+                </button>
+
+                <button class="icon-btn" title="Toggle Dark/Light Mode" id="btn-theme-toggle">
+                    <i class="fa-regular fa-moon"></i>
+                </button>
+
+                <div class="user-dropdown">
+                    <div class="avatar-placeholder-sm">ST</div>
+                    <span class="user-name">Saksham (Backend)</span>
+                    <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                </div>
+
+                <button class="btn btn-primary" id="btn-create">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Run Scenario</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION WITH 3D FLOWCHART ANIMATION -->
+    <section class="hero-section" id="hero">
+        <div class="container hero-container">
+            <div class="hero-text-block">
+                <div class="pill-badge">
+                    <span class="badge-dot"></span>
+                    <span>Smart India Hackathon 2026 Finals Submission</span>
+                    <i class="fa-solid fa-arrow-right badge-arrow"></i>
+                </div>
+
+                <h1 class="hero-headline">
+                    CyberQuant Risk Engine with <span class="gradient-text">3D Data Telemetry.</span>
+                </h1>
+
+                <p class="hero-subtext">
+                    Next-generation AI risk analytics connected to FastAPI backend services. Featuring 3D animated data telemetry, 3D resource allocation, node globe latency, and threat defense radar.
+                </p>
+
+                <div class="hero-cta-group">
+                    <button class="btn btn-primary btn-lg" id="btn-get-started">
+                        <span>Explore 3D Analytics</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <button class="btn btn-secondary btn-lg" id="btn-view-demo">
+                        <i class="fa-solid fa-play"></i>
+                        <span>Sync Backend API</span>
+                    </button>
+                </div>
+
+                <div class="hero-trust-strip">
+                    <span class="trust-title">FASTAPI BACKEND CONNECTED (/api/*)</span>
+                    <div class="trust-icons">
+                        <span><i class="fa-solid fa-server"></i> FastAPI App</span>
+                        <span><i class="fa-solid fa-database"></i> SQLite DB</span>
+                        <span><i class="fa-solid fa-brain"></i> CyberQuant AI</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HERO RIGHT SIDE: LIVE DYNAMIC FLOWCHART COMPONENT WITH 3D CANVAS OVERLAY -->
+            <div class="hero-preview-block">
+                <div class="flowchart-hero-card">
+                    <div class="preview-card-header">
+                        <div class="window-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="preview-title">CyberQuant 3D Engine — SIH 2026</div>
+                        <div class="status-pill active">
+                            <span class="status-dot"></span> 3D Stream Active
+                        </div>
+                    </div>
+
+                    <div class="hero-flow-diagram">
+                        <div class="flow-step">
+                            <div class="step-icon blue"><i class="fa-solid fa-database"></i></div>
+                            <div class="step-info">
+                                <span class="step-title">1. /api/dataset (Ingestion)</span>
+                                <span class="step-sub" id="hero-ingest-rate">12.4 GB/s Stream</span>
+                            </div>
+                        </div>
+
+                        <div class="flow-path-arrow"><i class="fa-solid fa-arrow-down-long text-blue"></i></div>
+
+                        <div class="flow-step highlight">
+                            <div class="step-icon purple"><i class="fa-solid fa-brain"></i></div>
+                            <div class="step-info">
+                                <span class="step-title">2. /api/ai (Model Inference)</span>
+                                <span class="step-sub" id="hero-model-acc">99.4% Accuracy</span>
+                            </div>
+                            <span class="badge badge-purple">Core Engine</span>
+                        </div>
+
+                        <div class="flow-path-arrow"><i class="fa-solid fa-arrow-down-long text-blue"></i></div>
+
+                        <div class="flow-step">
+                            <div class="step-icon emerald"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                            <div class="step-info">
+                                <span class="step-title">3. /api/dashboard (Telemetry)</span>
+                                <span class="step-sub" id="hero-latency">0.38 ms Sync</span>
+                            </div>
+                            <span class="badge badge-green">Live</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METRICS & KEY STATS: EXECUTIVE RISK OVERVIEW -->
+    <section class="stats-section">
+        <div class="container stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">ENTERPRISE RISK SCORE</span>
+                    <span class="stat-value" id="val-risk-score">72 <small style="font-size:14px;color:#94a3b8;">/ 100</small></span>
+                    <span class="stat-sub text-red"><i class="fa-solid fa-arrow-trend-up"></i> High Financial Exposure</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon blue"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">EXPECTED ANNUAL LOSS (EAL)</span>
+                    <span class="stat-value" id="val-eal">₹2.40 Cr</span>
+                    <span class="stat-sub text-blue"><i class="fa-solid fa-calculator"></i> Annualized Risk Exposure</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon purple"><i class="fa-solid fa-database"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">TOP RISK CONTRIBUTOR</span>
+                    <span class="stat-value" id="val-top-risk" style="font-size:18px;">Customer Database</span>
+                    <span class="stat-sub text-purple"><i class="fa-solid fa-shield-cat"></i> ₹62 Lakh Exposure</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon emerald"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">ROSI OPPORTUNITY</span>
+                    <span class="stat-value" id="val-max-loss">74.2% ROSI</span>
+                    <span class="stat-sub text-green"><i class="fa-solid fa-arrow-trend-down"></i> ₹1.10 Cr Risk Reduction</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D VISUAL ANALYTICS HUB (5 CARDS WITH THREE.JS 3D ANIMATED CANVASES) -->
+    <section class="dashboard-section" id="analytics-hub">
+        <div class="container">
+            <div class="section-header-block">
+                <div class="pill-badge">
+                    <i class="fa-solid fa-cube text-blue"></i>
+                    <span>3D Animated Telemetry Engine</span>
+                </div>
+                <h2 class="sec-title">3D Interactive Analytics & Flowcharts</h2>
+                <p class="sec-desc">Real-time data telemetry wave, 3D resource torus, global node globe, AI convergence curve, and 3D radar scanner.</p>
+            </div>
+
+            <!-- ROW 1: REAL-TIME TELEMETRY (3D WAVE) & RESOURCE ALLOCATION (3D TORUS) -->
+            <div class="charts-grid-2 margin-bottom-24">
+                
+                <!-- 3D CARD 1: Real-Time Data Telemetry -->
+                <div class="card visual-chart-card">
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <h3 class="card-title"><i class="fa-solid fa-wave-square text-blue"></i> 1) Real-Time Data Telemetry (3D Wave)</h3>
+                            <p class="card-subtitle">Live system throughput with 3D particle mesh wave animation</p>
+                        </div>
+                        <span class="badge badge-green"><span class="badge-dot"></span> 3D Stream</span>
+                    </div>
+                    <div class="card-body rel-box">
+                        <div class="three-canvas-bg" id="canvas-telemetry-3d"></div>
+                        <div class="chart-box overlay-box">
+                            <canvas id="telemetryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D CARD 2: Resource Allocation Distribution -->
+                <div class="card visual-chart-card">
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <h3 class="card-title"><i class="fa-solid fa-chart-pie text-purple"></i> 2) Resource Allocation (3D Torus)</h3>
+                            <p class="card-subtitle">CPU, Memory, Storage with 3D rotating wireframe torus</p>
+                        </div>
+                        <span class="badge badge-blue">Optimal</span>
+                    </div>
+                    <div class="card-body rel-box">
+                        <div class="three-canvas-bg" id="canvas-resource-3d"></div>
+                        <div class="chart-box overlay-box">
+                            <canvas id="resourceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 2: 3D CARD 3, 3D CARD 4, 3D CARD 5 -->
+            <div class="charts-grid-3">
+                
+                <!-- 3D CARD 3: Global Service Node Latency -->
+                <div class="card visual-chart-card">
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <h3 class="card-title"><i class="fa-solid fa-globe text-indigo"></i> 3) Global Node Latency (3D Globe)</h3>
+                            <p class="card-subtitle">3D spinning node network globe with latency in ms</p>
+                        </div>
+                    </div>
+                    <div class="card-body rel-box">
+                        <div class="three-canvas-bg" id="canvas-latency-3d"></div>
+                        <div class="chart-box overlay-box">
+                            <canvas id="latencyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D CARD 4: AI Loss & Accuracy Convergence -->
+                <div class="card visual-chart-card">
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <h3 class="card-title"><i class="fa-solid fa-brain text-emerald"></i> 4) AI Loss & Accuracy (3D Synapse)</h3>
+                            <p class="card-subtitle">3D neural synapse particles & training convergence</p>
+                        </div>
+                    </div>
+                    <div class="card-body rel-box">
+                        <div class="three-canvas-bg" id="canvas-loss-3d"></div>
+                        <div class="chart-box overlay-box">
+                            <canvas id="lossChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D CARD 5: Threat Defense Vector Radar -->
+                <div class="card visual-chart-card">
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <h3 class="card-title"><i class="fa-solid fa-shield-virus text-red"></i> 5) Threat Defense Radar (3D Sweep)</h3>
+                            <p class="card-subtitle">3D radar sweep beam & security threat coverage</p>
+                        </div>
+                    </div>
+                    <div class="card-body rel-box">
+                        <div class="three-canvas-bg" id="canvas-radar-3d"></div>
+                        <div class="chart-box overlay-box">
+                            <canvas id="securityRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CYBERQUANT INTERACTIVE DECISION ENGINE SECTIONS -->
+
+    <!-- SECTION 1: WHAT-IF SCENARIO SIMULATOR -->
+    <section class="dashboard-section bg-slate-900 text-slate-100" id="scenario-simulator" style="padding: 48px 0;">
+        <div class="container">
+            <div class="section-header-block">
+                <div class="pill-badge" style="background: rgba(12, 135, 232, 0.15); border: 1px solid rgba(12, 135, 232, 0.4); color: #38bdf8;">
+                    <i class="fa-solid fa-sliders text-blue"></i>
+                    <span>Real-time Financial Risk Simulator</span>
+                </div>
+                <h2 class="sec-title" style="color: #ffffff;">What-If Scenario Simulator</h2>
+                <p class="sec-desc" style="color: #94a3b8;">Simulate security control modifications or delayed patching to predict exact financial loss deltas before spending money.</p>
+            </div>
+
+            <div class="charts-grid-2">
+                <!-- Scenario Form Controls -->
+                <div class="card" style="background: #1e293b; border: 1px solid #334155;">
+                    <div class="card-header">
+                        <h3 class="card-title" style="color: #f8fafc;"><i class="fa-solid fa-gears text-blue"></i> Select Security Scenario</h3>
+                    </div>
+                    <div class="card-body form-grid">
+                        <div class="form-group">
+                            <label style="color: #cbd5e1; font-weight: 600;">Hypothetical Security Action</label>
+                            <select class="form-select" id="scenario-action-select" style="background: #0f172a; color: #f8fafc; border: 1px solid #475569; padding: 10px; border-radius: 8px; width: 100%;">
+                                <option value="enable_mfa">1. Enable MFA for 100% of Privileged Users (Cost: ₹20 Lakhs)</option>
+                                <option value="patch_critical">2. Patch All Internet-Facing Critical Vulnerabilities (Cost: ₹10 Lakhs)</option>
+                                <option value="network_segmentation">3. Implement Micro-Segmentation on Database Tier (Cost: ₹40 Lakhs)</option>
+                                <option value="expand_edr">4. Expand EDR Coverage to All Workstations & Servers (Cost: ₹30 Lakhs)</option>
+                                <option value="delay_30_days">5. Delay Critical Patch Remediation by 30 Days (Cost: ₹0)</option>
+                                <option value="cut_budget_20">6. Reduce Security Budget by 20% (Cost: -₹20 Lakhs)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group margin-top-12">
+                            <label style="color: #cbd5e1; font-weight: 600;">Control Target Coverage: <span id="lbl-coverage-val" class="text-blue">100%</span></label>
+                            <input type="range" id="scenario-coverage-slider" min="10" max="100" value="100" style="width: 100%; accent-color: #0c87e8;">
+                        </div>
+
+                        <button class="btn btn-primary margin-top-16" id="btn-run-scenario-sim" style="width: 100%; justify-content: center; font-size: 15px; padding: 12px;">
+                            <i class="fa-solid fa-play"></i> Run What-If Financial Simulation
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Scenario Output Card -->
+                <div class="card" style="background: #1e293b; border: 1px solid #334155;">
+                    <div class="card-header">
+                        <h3 class="card-title" style="color: #f8fafc;"><i class="fa-solid fa-chart-pie text-emerald"></i> Simulated Risk Delta Results</h3>
+                        <span class="badge badge-green" id="scenario-status-tag">Ready</span>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div style="background: #0f172a; padding: 16px; border-radius: 8px; border: 1px solid #334155;">
+                                <div style="font-size: 11px; color: #94a3b8; font-weight: 600;">CURRENT EAL</div>
+                                <div style="font-size: 22px; font-weight: 700; color: #f8fafc;" id="scen-current-eal">₹2.40 Cr</div>
+                            </div>
+                            <div style="background: #0f172a; padding: 16px; border-radius: 8px; border: 1px solid #334155;">
+                                <div style="font-size: 11px; color: #94a3b8; font-weight: 600;">PREDICTED NEW EAL</div>
+                                <div style="font-size: 22px; font-weight: 700; color: #38bdf8;" id="scen-new-eal">₹1.90 Cr</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 16px; background: #0f172a; padding: 16px; border-radius: 8px; border: 1px solid #16a34a;">
+                            <div style="font-size: 12px; color: #4ade80; font-weight: 700;">EXPECTED RISK REDUCTION</div>
+                            <div style="font-size: 26px; font-weight: 800; color: #4ade80;" id="scen-risk-reduction">₹50.0 Lakhs</div>
+                            <div style="font-size: 12px; color: #94a3b8; margin-top: 4px;" id="scen-rosi-text">Estimated ROSI: <strong>150.0% Return on Investment</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: SECURITY INVESTMENT OPTIMIZER (KNAPSACK ALGORITHM) -->
+    <section class="dashboard-section" id="investment-optimizer" style="padding: 48px 0;">
+        <div class="container">
+            <div class="section-header-block">
+                <div class="pill-badge">
+                    <i class="fa-solid fa-coins text-purple"></i>
+                    <span>Knapsack Budget Optimization Engine</span>
+                </div>
+                <h2 class="sec-title">Security Investment Optimizer</h2>
+                <p class="sec-desc">Input your available security budget to compute the mathematically optimal portfolio of controls maximizing loss reduction ($\text{ROSI}$).</p>
+            </div>
+
+            <div class="card" style="margin-bottom: 24px;">
+                <div class="card-body">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+                        <div style="flex: 1; min-width: 280px;">
+                            <label style="font-weight: 700; font-size: 16px; color: #1e293b;">Available Security Budget: <span id="lbl-budget-val" class="text-purple" style="font-size: 20px;">₹1.00 Crore</span></label>
+                            <input type="range" id="opt-budget-slider" min="1000000" max="50000000" step="500000" value="10000000" style="width: 100%; margin-top: 8px; accent-color: #9333ea;">
+                        </div>
+                        <button class="btn btn-primary btn-lg" id="btn-calculate-optimize" style="background: #9333ea; border-color: #9333ea;">
+                            <i class="fa-solid fa-calculator"></i> Calculate Optimal Portfolio
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3 class="card-title"><i class="fa-solid fa-check-double text-purple"></i> Recommended Security Control Portfolio</h3>
+                    <div style="font-size: 13px; color: #64748b;" id="opt-summary-sub">Spend: <strong>₹98.0 Lakhs</strong> | Risk Reduction: <strong>₹1.45 Cr</strong> | ROSI: <strong class="text-green">48.0%</strong></div>
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table class="data-table" id="table-optimal-controls">
+                        <thead>
+                            <tr>
+                                <th>Recommended Control</th>
+                                <th>Implementation Cost</th>
+                                <th>Expected Loss Reduction</th>
+                                <th>Framework Mappings</th>
+                                <th>ROSI Contribution</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-optimal-controls">
+                            <tr>
+                                <td><strong>Critical Patching Program</strong></td>
+                                <td>₹10.0 Lakhs</td>
+                                <td>₹25.0 Lakhs</td>
+                                <td><span class="badge badge-blue">NIST / CIS / ISO</span></td>
+                                <td><span class="badge badge-green">+150.0%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>MFA Expansion for Privileged Users</strong></td>
+                                <td>₹20.0 Lakhs</td>
+                                <td>₹35.0 Lakhs</td>
+                                <td><span class="badge badge-purple">RBI / SEBI / NIST</span></td>
+                                <td><span class="badge badge-green">+75.0%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Database Network Segmentation</strong></td>
+                                <td>₹40.0 Lakhs</td>
+                                <td>₹60.0 Lakhs</td>
+                                <td><span class="badge badge-blue">CIS / ISO 27001</span></td>
+                                <td><span class="badge badge-green">+50.0%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: ASK CYBERQUANT AI RISK ANALYST & BLOCKCHAIN AUDIT -->
+    <section class="dashboard-section bg-slate-900 text-slate-100" id="ai-analyst" style="padding: 48px 0;">
+        <div class="container">
+            <div class="section-header-block">
+                <div class="pill-badge" style="background: rgba(147, 51, 234, 0.15); border: 1px solid rgba(147, 51, 234, 0.4); color: #c084fc;">
+                    <i class="fa-solid fa-robot text-purple"></i>
+                    <span>AI Decision Support & Governance</span>
+                </div>
+                <h2 class="sec-title" style="color: #ffffff;">Ask CyberQuant AI Risk Analyst</h2>
+                <p class="sec-desc" style="color: #94a3b8;">Query risk telemetry in natural language or verify tamper-evident risk audit hashes on Sepolia EVM.</p>
+            </div>
+
+            <div class="charts-grid-2">
+                <!-- AI Query Chat Box -->
+                <div class="card" style="background: #1e293b; border: 1px solid #334155;">
+                    <div class="card-header">
+                        <h3 class="card-title" style="color: #f8fafc;"><i class="fa-solid fa-comments text-purple"></i> Ask CyberQuant AI</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="search-input-wrapper" style="width: 100%; margin-bottom: 12px;">
+                            <i class="fa-solid fa-magnifying-glass search-icon" style="color: #94a3b8;"></i>
+                            <input type="text" placeholder="e.g. What is our highest financial risk today?" id="ai-chat-input" style="width: 100%; background: #0f172a; border: 1px solid #475569; color: #f8fafc; padding: 10px 10px 10px 36px; border-radius: 8px;">
+                        </div>
+
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
+                            <button class="btn btn-outline btn-xs btn-ai-prompt" style="color: #cbd5e1; border-color: #475569;">Highest risk asset?</button>
+                            <button class="btn btn-outline btn-xs btn-ai-prompt" style="color: #cbd5e1; border-color: #475569;">Where to spend ₹1 Cr?</button>
+                            <button class="btn btn-outline btn-xs btn-ai-prompt" style="color: #cbd5e1; border-color: #475569;">Vulnerabilities priority?</button>
+                        </div>
+
+                        <div id="ai-response-box" style="background: #0f172a; border: 1px solid #334155; padding: 16px; border-radius: 8px; min-height: 120px; font-size: 14px; line-height: 1.6; color: #e2e8f0;">
+                            <em>Ask a question above to receive instant executive insights synthesized from our deterministic risk engine.</em>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sepolia Blockchain Audit Card -->
+                <div class="card" style="background: #1e293b; border: 1px solid #334155;">
+                    <div class="card-header">
+                        <h3 class="card-title" style="color: #f8fafc;"><i class="fa-link text-blue"></i> Sepolia Blockchain Audit Trail</h3>
+                        <span class="badge badge-blue">EVM Anchored</span>
+                    </div>
+                    <div class="card-body">
+                        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 16px;">Generate a SHA-256 canonical hash of the current enterprise risk snapshot and investment decisions to record an immutable governance log on Sepolia testnet.</p>
+                        
+                        <div style="background: #0f172a; padding: 14px; border-radius: 8px; border: 1px dashed #475569; font-family: 'Share Tech Mono', monospace; font-size: 12px; color: #38bdf8; word-break: break-all; margin-bottom: 16px;" id="audit-hash-display">
+                            Canonical Hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+                        </div>
+
+                        <button class="btn btn-primary" id="btn-generate-audit" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-shield-halved"></i> Generate & Record Sepolia Audit Hash
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE PIPELINE FLOWCHART & NODE ORCHESTRATOR -->
+    <section class="pipeline-section" id="pipeline">
+        <div class="container">
+            <div class="section-header-block">
+                <div class="pill-badge">
+                    <i class="fa-solid fa-diagram-project text-blue"></i>
+                    <span>Interactive Data Architecture</span>
+                </div>
+                <h2 class="sec-title">Node Flowchart Orchestration Pipeline</h2>
+                <p class="sec-desc">Click any node to inspect telemetry, test latency, or toggle node status.</p>
+            </div>
+
+            <div class="flowchart-container">
+                <div class="flowchart-nodes-row">
+                    <!-- Node 1 -->
+                    <div class="flow-node active" data-node="Node 01: /api/dataset">
+                        <div class="node-status-dot online"></div>
+                        <div class="node-icon blue"><i class="fa-solid fa-database"></i></div>
+                        <div class="node-info">
+                            <span class="node-title">Dataset Gateway</span>
+                            <span class="node-sub">/api/dataset</span>
+                        </div>
+                        <div class="node-metric">12.4 GB/s</div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flow-connector"><i class="fa-solid fa-chevron-right"></i></div>
+
+                    <!-- Node 2 -->
+                    <div class="flow-node active" data-node="Node 02: /api/assets">
+                        <div class="node-status-dot online"></div>
+                        <div class="node-icon indigo"><i class="fa-solid fa-filter"></i></div>
+                        <div class="node-info">
+                            <span class="node-title">Assets Manager</span>
+                            <span class="node-sub">/api/assets</span>
+                        </div>
+                        <div class="node-metric">0.12 ms</div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flow-connector"><i class="fa-solid fa-chevron-right"></i></div>
+
+                    <!-- Node 3 (Core) -->
+                    <div class="flow-node core active" data-node="Node 03: /api/ai">
+                        <div class="node-status-dot online"></div>
+                        <div class="node-icon purple"><i class="fa-solid fa-brain"></i></div>
+                        <div class="node-info">
+                            <span class="node-title">CyberQuant AI</span>
+                            <span class="node-sub">/api/ai</span>
+                        </div>
+                        <div class="node-metric">99.4% Acc</div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flow-connector"><i class="fa-solid fa-chevron-right"></i></div>
+
+                    <!-- Node 4 -->
+                    <div class="flow-node active" data-node="Node 04: /api/compliance">
+                        <div class="node-status-dot online"></div>
+                        <div class="node-icon emerald"><i class="fa-solid fa-shield-virus"></i></div>
+                        <div class="node-info">
+                            <span class="node-title">Threat Compliance</span>
+                            <span class="node-sub">/api/compliance</span>
+                        </div>
+                        <div class="node-metric">0 Blocked</div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flow-connector"><i class="fa-solid fa-chevron-right"></i></div>
+
+                    <!-- Node 5 -->
+                    <div class="flow-node active" data-node="Node 05: /api/dashboard">
+                        <div class="node-status-dot online"></div>
+                        <div class="node-icon blue"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                        <div class="node-info">
+                            <span class="node-title">Dashboard Stream</span>
+                            <span class="node-sub">/api/dashboard</span>
+                        </div>
+                        <div class="node-metric">Stable</div>
+                    </div>
+                </div>
+
+                <div class="node-inspector-panel" id="node-inspector">
+                    <div class="inspector-header">
+                        <span class="insp-name" id="insp-node-name">NODE 03: /api/ai (CYBERQUANT AI)</span>
+                        <button class="btn btn-outline btn-xs" id="btn-toggle-node"><i class="fa-solid fa-power-off"></i> Toggle Node Status</button>
+                    </div>
+                    <div class="inspector-grid">
+                        <div class="insp-stat"><span class="lbl">LATENCY</span><span class="val" id="insp-latency">0.12 ms</span></div>
+                        <div class="insp-stat"><span class="lbl">PACKET TRAFFIC</span><span class="val" id="insp-traffic">48.2 TB/s</span></div>
+                        <div class="insp-stat"><span class="lbl">SYNAPSE LOAD</span><span class="val text-blue" id="insp-load">64.2%</span></div>
+                        <div class="insp-stat"><span class="lbl">HEALTH</span><span class="val text-green" id="insp-health">OPTIMAL</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CYBERQUANT ENTERPRISE DATA HUB (ASSETS, VULNERABILITIES, COMPLIANCE, TEAM) -->
+    <section class="dashboard-section" id="data-hub" style="padding: 48px 0;">
+        <div class="container">
+            <div class="section-header-block">
+                <div class="pill-badge">
+                    <i class="fa-solid fa-server text-blue"></i>
+                    <span>Enterprise Telemetry & Governance Hub</span>
+                </div>
+                <h2 class="sec-title">Enterprise Assets, Vulnerabilities & Frameworks</h2>
+                <p class="sec-desc">Explore live enterprise telemetry synced directly from SQLite / PostgreSQL backend services.</p>
+            </div>
+
+            <div class="tab-control-bar">
+                <div class="segmented-tabs">
+                    <button class="tab-btn active" data-tab="tab-assets">
+                        <i class="fa-solid fa-server"></i> Asset Risk Inventory (<span id="count-assets-tab">150</span>)
+                    </button>
+                    <button class="tab-btn" data-tab="tab-vulnerabilities">
+                        <i class="fa-solid fa-bug"></i> Vulnerability Findings (<span id="count-vuln-tab">69</span>)
+                    </button>
+                    <button class="tab-btn" data-tab="tab-compliance">
+                        <i class="fa-solid fa-certificate"></i> Compliance Frameworks
+                    </button>
+                    <button class="tab-btn" data-tab="tab-team">
+                        <i class="fa-solid fa-user-shield"></i> SIH 2026 Team Roster
+                    </button>
+                </div>
+                <button class="btn btn-outline btn-sm" id="btn-refresh-hub" onclick="loadEnterpriseHubData()">
+                    <i class="fa-solid fa-rotate"></i> Refresh Data
+                </button>
+            </div>
+
+            <!-- TAB 1: ASSETS INVENTORY -->
+            <div class="tab-pane active" id="tab-assets">
+                <div class="card">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 class="card-title"><i class="fa-solid fa-database text-blue"></i> Enterprise Asset Inventory & Financial Loss Exposure</h3>
+                        <input type="text" id="asset-search-input" placeholder="Search asset name, type, department..." style="padding: 6px 12px; font-size: 13px; border-radius: 6px; border: 1px solid #cbd5e1;">
+                    </div>
+                    <div class="card-body" style="padding: 0; max-height: 400px; overflow-y: auto;">
+                        <table class="data-table" id="table-assets-live">
+                            <thead>
+                                <tr>
+                                    <th>Asset Name</th>
+                                    <th>Type</th>
+                                    <th>Department</th>
+                                    <th>Criticality</th>
+                                    <th>Downtime Cost/hr</th>
+                                    <th>Asset Valuation</th>
+                                    <th>Expected Loss (EAL)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-assets-live">
+                                <tr>
+                                    <td colspan="7" style="text-align: center; padding: 24px; color: #64748b;">
+                                        <i class="fa-solid fa-spinner fa-spin text-blue"></i> Loading live asset inventory from FastAPI backend...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: VULNERABILITIES -->
+            <div class="tab-pane" id="tab-vulnerabilities">
+                <div class="card">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 class="card-title"><i class="fa-solid fa-shield-cat text-red"></i> Technical Vulnerability Findings & Patch Remediation</h3>
+                        <span class="badge badge-purple" id="vuln-critical-count">52 Critical CVEs</span>
+                    </div>
+                    <div class="card-body" style="padding: 0; max-height: 400px; overflow-y: auto;">
+                        <table class="data-table" id="table-vulns-live">
+                            <thead>
+                                <tr>
+                                    <th>CVE Identifier</th>
+                                    <th>Vulnerability Title</th>
+                                    <th>Severity</th>
+                                    <th>CVSS Score</th>
+                                    <th>Exploit Status</th>
+                                    <th>Internet Exposed</th>
+                                    <th>Mapped Asset</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-vulns-live">
+                                <tr>
+                                    <td colspan="7" style="text-align: center; padding: 24px; color: #64748b;">
+                                        <i class="fa-solid fa-spinner fa-spin text-red"></i> Loading vulnerability telemetry...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: COMPLIANCE FRAMEWORKS -->
+            <div class="tab-pane" id="tab-compliance">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fa-solid fa-scale-balanced text-emerald"></i> Regulatory & Framework Compliance Mapping</h3>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                            <div style="background: #f8fafc; padding: 16px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center;">
+                                <div style="font-size: 12px; font-weight: 700; color: #64748b;">NIST CSF 2.0</div>
+                                <div style="font-size: 24px; font-weight: 800; color: #0c87e8; margin-top: 4px;" id="comp-score-nist">78%</div>
+                                <div style="font-size: 11px; color: #16a34a; margin-top: 2px;">Identity & Access Compliant</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 16px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center;">
+                                <div style="font-size: 12px; font-weight: 700; color: #64748b;">ISO/IEC 27001</div>
+                                <div style="font-size: 24px; font-weight: 800; color: #9333ea; margin-top: 4px;" id="comp-score-iso">74%</div>
+                                <div style="font-size: 11px; color: #16a34a; margin-top: 2px;">Annex A Controls Mapped</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 16px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center;">
+                                <div style="font-size: 12px; font-weight: 700; color: #64748b;">CIS CONTROLS v8</div>
+                                <div style="font-size: 24px; font-weight: 800; color: #16a34a; margin-top: 4px;" id="comp-score-cis">81%</div>
+                                <div style="font-size: 11px; color: #16a34a; margin-top: 2px;">Account & Data Security</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 16px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center;">
+                                <div style="font-size: 12px; font-weight: 700; color: #64748b;">RBI CYBER FRAMEWORK</div>
+                                <div style="font-size: 24px; font-weight: 800; color: #ca8a04; margin-top: 4px;" id="comp-score-rbi">69%</div>
+                                <div style="font-size: 11px; color: #ca8a04; margin-top: 2px;">MFA Expansion Needed</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 16px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center;">
+                                <div style="font-size: 12px; font-weight: 700; color: #64748b;">SEBI CYBER RESILIENCE</div>
+                                <div style="font-size: 24px; font-weight: 800; color: #0c87e8; margin-top: 4px;" id="comp-score-sebi">73%</div>
+                                <div style="font-size: 11px; color: #16a34a; margin-top: 2px;">Audit & Logging Aligned</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: SIH 2026 TEAM ROSTER -->
+            <div class="tab-pane" id="tab-team">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fa-solid fa-users text-blue"></i> SIH 2026 — Team Engineering Roles & Responsibilities</h3>
+                    </div>
+                    <div class="card-body" style="padding: 0;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Team Member</th>
+                                    <th>Primary Module Responsibility</th>
+                                    <th>Key Deliverables</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Laksh</strong></td>
+                                    <td>AI/ML & Cyber Risk Quantification</td>
+                                    <td>EAL Calculation, Probability Engine, Scikit-Learn Model</td>
+                                    <td><span class="badge badge-green">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Saksham</strong></td>
+                                    <td>Backend Architect & API Infrastructure</td>
+                                    <td>FastAPI Framework, SQLAlchemy DB Schemas, Endpoints</td>
+                                    <td><span class="badge badge-green">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Shivam</strong></td>
+                                    <td>Cybersecurity Architecture & Threat Modeling</td>
+                                    <td>Vulnerability Classification, Attack Vectors, Control Efficacy</td>
+                                    <td><span class="badge badge-green">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Rajat</strong></td>
+                                    <td>Synthetic Data & Security Telemetry</td>
+                                    <td>Fintech Asset Generator, CVE Mapping, Attack Scenarios</td>
+                                    <td><span class="badge badge-green">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mridul</strong></td>
+                                    <td>Frontend UI & Quality Assurance</td>
+                                    <td>Dashboard Visuals, Chart.js Integration, API Sync</td>
+                                    <td><span class="badge badge-green">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Seema</strong></td>
+                                    <td>Product Strategy & Executive Presentation</td>
+                                    <td>User Journey, ROSI Business Case, Hackathon Pitch Deck</td>
+                                    <td><span class="badge badge-green">Completed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERACTIVE CYBER CLI TERMINAL CONSOLE -->
+    <section class="terminal-section" id="terminal">
+        <div class="container">
+            <div class="card terminal-card">
+                <div class="terminal-header">
+                    <div class="terminal-title">
+                        <i class="fa-solid fa-terminal text-blue"></i> CyberQuant CLI Shell // FastAPI Connected
+                    </div>
+                    <div class="terminal-badge">TTY-1 // BASH 5.2</div>
+                </div>
+                <div class="terminal-body" id="term-body">
+                    <div class="term-line">CyberQuant SIH 2026 Shell Engine [FastAPI Connected]</div>
+                    <div class="term-line">Type <span class="highlight-blue">'help'</span> for commands or <span class="highlight-green">'api'</span> to test backend routes.</div>
+                    <div class="term-line">&nbsp;</div>
+                </div>
+                <div class="terminal-input-bar">
+                    <span class="prompt">root@cyberquant:~#</span>
+                    <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" placeholder="Type help, api, pipeline, status, simulate, clear...">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col brand-col">
+                <div class="brand-logo">
+                    <div class="logo-badge"><i class="fa-solid fa-shield-halved"></i></div>
+                    <span class="brand-title">CYBERQUANT 3D</span>
+                </div>
+                <p class="footer-desc">
+                    A next-generation web application designed for Smart India Hackathon 2026. Connected to CyberQuant FastAPI backend services.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#analytics-hub">3D Visual Analytics</a></li>
+                    <li><a href="#pipeline">Data Flowchart</a></li>
+                    <li><a href="#terminal">CLI Console</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">FastAPI Docs (/docs)</a></li>
+                    <li><a href="#">Security Guidelines</a></li>
+                    <li><a href="#">SIH 2026 Criteria</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Stay updated with our latest releases.</p>
+                <form class="subscribe-form" onsubmit="event.preventDefault(); alert('Subscribed to updates!');">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <span>© 2026 CyberQuant SIH Project. All rights reserved.</span>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Security</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CREATE PROJECT MODAL -->
+    <div class="modal-backdrop" id="create-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title">Run CyberQuant Scenario</h3>
+                <button class="modal-close" id="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body form-grid">
+                <div class="form-group">
+                    <label>Scenario Name</label>
+                    <input type="text" class="form-input" placeholder="e.g. Stress Test 4096-bit AES Encryption" id="new-proj-name">
+                </div>
+                <div class="form-group">
+                    <label>Module Target</label>
+                    <select class="form-select">
+                        <option>/api/ai - CyberQuant AI Engine</option>
+                        <option>/api/risks - Threat Shield</option>
+                        <option>/api/assets - Resource Allocator</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="modal-cancel-btn">Cancel</button>
+                <button class="btn btn-primary" id="modal-submit-btn">Run Scenario</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Application JS -->
+    <script src="app.js"></script>
+</body>
+</html>

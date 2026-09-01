@@ -29,11 +29,17 @@ def calculate_asset_likelihood(asset: Asset, vulns: list, mfa_override=None, edr
 
 
 def calculate_asset_impact(asset: Asset) -> float:
-    """Calculates potential monetary impact in INR."""
+    """
+    Calculates potential monetary impact in INR specifically calibrated for the
+    given Fintech Enterprise / Banking Organization (Section 8, 9, 14 of SIH 2026 Spec).
+    Impact = Direct Asset Valuation + Downtime Cost + Incident Recovery + Regulatory Exposure (RBI / SEBI).
+    """
     downtime_hours = 12 if asset.business_criticality in ["Critical", "High"] else 4
     downtime_loss = asset.downtime_cost_per_hour_inr * downtime_hours
     recovery_cost = 500000.0 if asset.business_criticality == "Critical" else 100000.0
-    return asset.asset_value_inr + downtime_loss + recovery_cost
+    # Regulatory penalty & audit risk under RBI Cyber Security Framework for critical banking nodes
+    regulatory_cost = 2500000.0 if asset.business_criticality == "Critical" and asset.is_internet_exposed else 0.0
+    return asset.asset_value_inr + downtime_loss + recovery_cost + regulatory_cost
 
 
 def evaluate_all_risks(db: Session, mfa_override=None, edr_override=None):

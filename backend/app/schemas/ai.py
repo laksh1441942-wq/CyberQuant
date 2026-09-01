@@ -1,8 +1,9 @@
 from pydantic import BaseModel, Field
-from typing import List
+from typing import List, Optional
 
 class AIQueryRequest(BaseModel):
-    query: str = Field(..., example="What is our highest financial cyber risk today?")
+    query: Optional[str] = Field(None, examples=["What is our highest financial cyber risk today?"])
+    prompt: Optional[str] = Field(None, examples=["What is our highest financial cyber risk today?"])
 
 class AIQueryResponse(BaseModel):
     query: str
