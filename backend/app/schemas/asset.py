@@ -16,6 +16,9 @@ class AssetResponse(BaseModel):
     likelihood_pct: float
     financial_impact_inr: float
     expected_annual_loss_inr: float
+    risk_probability: Optional[float] = None
+    risk_band: Optional[str] = None
+    top_drivers: List[str] = []
 
 class AssetListResponse(BaseModel):
     total_count: int
