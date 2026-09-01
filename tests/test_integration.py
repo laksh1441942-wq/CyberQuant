@@ -8,6 +8,8 @@ import json
 import sys
 from pathlib import Path
 
+import pytest
+
 # Add project root to path
 PROJECT_ROOT = Path(__file__).resolve().parents[1].parent
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -19,16 +21,29 @@ from backend.app.services.risk_service import evaluate_all_risks
 from backend.app.services.optimizer_service import optimize_budget_knapsack
 
 
-def test_data_generation():
+@pytest.fixture
+def dataset():
+    data_dir = Path(__file__).resolve().parent.parent / "data" / "generated"
+    loaded = load_enterprise_dataset(data_dir)
+    assert len(loaded["assets"]) == 150, f"Expected 150 assets, got {len(loaded['assets'])}"
+    assert len(loaded["vulnerabilities"]) > 0, "No vulnerabilities loaded"
+    assert len(loaded["threats"]) > 0, "No threats loaded"
+    return loaded
+
+
+@pytest.fixture
+def results(dataset):
+    with SessionLocal() as db:
+        return evaluate_all_risks(db)
+
+
+def test_data_generation(dataset):
     """Test: Synthetic data loads correctly."""
     print("TEST 1: Data Generation...")
-    data_dir = Path(__file__).resolve().parent.parent / "data" / "generated"
-    dataset = load_enterprise_dataset(data_dir)
     assert len(dataset["assets"]) == 150, f"Expected 150 assets, got {len(dataset['assets'])}"
     assert len(dataset["vulnerabilities"]) > 0, "No vulnerabilities loaded"
     assert len(dataset["threats"]) > 0, "No threats loaded"
     print(f"  ✓ Loaded 150 assets, {len(dataset['vulnerabilities'])} vulnerabilities, {len(dataset['threats'])} threats")
-    return dataset
 
 
 def test_risk_quantification(dataset):
@@ -85,21 +100,17 @@ def test_database_integration():
         print(f"  ✓ Database has {asset_count} assets")
 
 
-def test_risk_service():
+def test_risk_service(results):
     """Test: Risk evaluation service."""
     print("\nTEST 5: Risk Service...")
-    with SessionLocal() as db:
-        results = evaluate_all_risks(db)
-        
-        assert "total_expected_annual_loss_inr" in results, "Missing total EAL"
-        assert "enterprise_risk_score" in results, "Missing enterprise risk score"
-        assert "top_5_risk_contributors" in results, "Missing top risk contributors"
-        assert results["total_expected_annual_loss_inr"] > 0, "EAL should be positive"
-        
-        print(f"  ✓ Enterprise EAL: ₹{results['total_expected_annual_loss_inr']:,.2f}")
-        print(f"  ✓ Enterprise Risk Score: {results['enterprise_risk_score']}/100")
-        print(f"  ✓ Top Risk Asset: {results['top_5_risk_contributors'][0]['asset_name']}")
-        return results
+    assert "total_expected_annual_loss_inr" in results, "Missing total EAL"
+    assert "enterprise_risk_score" in results, "Missing enterprise risk score"
+    assert "top_5_risk_contributors" in results, "Missing top risk contributors"
+    assert results["total_expected_annual_loss_inr"] > 0, "EAL should be positive"
+
+    print(f"  ✓ Enterprise EAL: ₹{results['total_expected_annual_loss_inr']:,.2f}")
+    print(f"  ✓ Enterprise Risk Score: {results['enterprise_risk_score']}/100")
+    print(f"  ✓ Top Risk Asset: {results['top_5_risk_contributors'][0]['asset_name']}")
 
 
 def test_investment_optimization(results):
