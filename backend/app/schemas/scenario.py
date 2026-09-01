@@ -1,11 +1,16 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, List
 
 class ScenarioRequest(BaseModel):
-    action: str = Field(
-        ...,
+    action: Optional[str] = Field(
+        None,
         description="Action: 'enable_mfa', 'enable_edr', 'enable_both', 'patch_critical', 'delay_remediation'",
         examples=["enable_mfa"]
+    )
+    actions: Optional[List[str]] = Field(
+        None,
+        description="List of actions to combine, e.g. ['enable_mfa', 'enable_edr']",
+        examples=[["enable_mfa", "enable_edr"]]
     )
     coverage: Optional[int] = Field(
         100,

@@ -12,7 +12,25 @@ def run_scenario(req: ScenarioRequest, db: Session = Depends(get_db)):
     baseline = evaluate_all_risks(db)
     base_eal = baseline["total_expected_annual_loss_inr"]
     cov_ratio = (req.coverage or 100) / 100.0
-    action_clean = req.action.strip().lower()
+    
+    if req.actions:
+        act_set = set(a.lower().strip() for a in req.actions)
+        if "enable_mfa" in act_set and "enable_edr" in act_set:
+            action_clean = "enable_both"
+        elif "enable_mfa" in act_set:
+            action_clean = "enable_mfa"
+        elif "enable_edr" in act_set:
+            action_clean = "enable_edr"
+        elif "patch_critical" in act_set:
+            action_clean = "patch_critical"
+        elif "delay_remediation" in act_set:
+            action_clean = "delay_remediation"
+        else:
+            action_clean = req.actions[0].lower().strip() if req.actions else "enable_mfa"
+    elif req.action:
+        action_clean = req.action.strip().lower()
+    else:
+        action_clean = "enable_mfa"
 
     if action_clean in ["enable_mfa", "enable_mfa_all"]:
         scenario = evaluate_all_risks(db, mfa_override=True)
@@ -36,7 +54,7 @@ def run_scenario(req: ScenarioRequest, db: Session = Depends(get_db)):
         risk_reduced = base_eal - reduced_eal
         rosi = ((risk_reduced - cost) / cost * 100) if cost > 0 else 0.0
         return ScenarioResponse(
-            scenario_action=req.action,
+            scenario_action=action_clean,
             description=desc,
             baseline_eal_inr=base_eal,
             scenario_eal_inr=round(reduced_eal, 2),
@@ -52,7 +70,7 @@ def run_scenario(req: ScenarioRequest, db: Session = Depends(get_db)):
         increased_eal = base_eal * 1.25
         risk_increased = increased_eal - base_eal
         return ScenarioResponse(
-            scenario_action=req.action,
+            scenario_action=action_clean,
             description=desc,
             baseline_eal_inr=base_eal,
             scenario_eal_inr=round(increased_eal, 2),
@@ -71,7 +89,7 @@ def run_scenario(req: ScenarioRequest, db: Session = Depends(get_db)):
     rosi = ((risk_reduced - cost) / cost * 100) if cost > 0 else 0.0
 
     return ScenarioResponse(
-        scenario_action=req.action,
+        scenario_action=action_clean,
         description=desc,
         baseline_eal_inr=base_eal,
         scenario_eal_inr=round(actual_scenario_eal, 2),

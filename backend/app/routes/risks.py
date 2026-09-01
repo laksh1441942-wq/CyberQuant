@@ -5,6 +5,12 @@ from backend.app.services.risk_service import evaluate_all_risks
 
 router = APIRouter(prefix="/api/risks", tags=["Risks"])
 
+@router.get("")
+@router.get("/")
+def get_all_risks(db: Session = Depends(get_db)):
+    """Returns all evaluated enterprise cyber risks."""
+    return evaluate_all_risks(db)
+
 @router.get("/top")
 def get_top_risk_assets(limit: int = Query(5, ge=1, le=20), db: Session = Depends(get_db)):
     """Returns top N highest financial risk contributor assets."""
